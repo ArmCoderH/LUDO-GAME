@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "postinstall": "npx patch-package",
     "pod-install": "cd ios && set RCT_NEW_ARCH_ENABLED=1 && bundle exec pod install"
   },
   "dependencies": {

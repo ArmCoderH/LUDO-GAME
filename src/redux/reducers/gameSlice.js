@@ -4,7 +4,12 @@ import { initialState } from './initialState'
 export const gameSlice = createSlice({
     name : 'game',
     initialState : initialState,
-    reducers: {}
+    reducers: {
+        resetGame : () => initialState,
+        announceWinner : (state,action) => {
+            state.winner = action.payload
+        }
+    }
 })
-export const {} = gameSlice.actions
+export const {resetGame,announceWinner} = gameSlice.actions
 export default gameSlice.reducer
