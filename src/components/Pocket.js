@@ -72,12 +72,13 @@ const styles = StyleSheet.create({
   },
   plot: {
     backgroundColor: Colors.green,
-    height: '80%',
-    width: '36%',
+    height: '70%',
+    width: '30%',
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    // padding : 10
+    margin:10
+    // paddingVertical : 10
   },
   pile: {
     width: 20, // Adjust width
