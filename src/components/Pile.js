@@ -8,6 +8,7 @@ import PileRed from '../assets/images/piles/red.png'
 import PileBlue from '../assets/images/piles/blue.png'
 import PileYellow from '../assets/images/piles/yellow.png'
 import DashedCircle from '../assets/images/circle.png'
+import {Svg,Circle} from 'react-native-svg'
 
 const Pile = ({cell,pieceId,color,player,onPress}) => {
     const rotation = useRef(new Animated.Value(0)).current
@@ -83,7 +84,19 @@ const Pile = ({cell,pieceId,color,player,onPress}) => {
                 <Animated.View
                 style={[styles.dashedCircle, {transform:[{rotate:rotateInterpolate}]}]}
                 >
-                    <Image source={DashedCircle} style={styles.dashedCircleImage}/>
+                    {/* <Image source={DashedCircle} style={styles.dashedCircleImage}/> */}
+                    <Svg height="18" width="18">
+                        <Circle
+                        cx="9"
+                        cy="9"
+                        r="8"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeDasharray="4 4"
+                        strokeDashoffset="0"
+                        fill="transparent"
+                        />
+                    </Svg>
                 </Animated.View>
             </View>
             )}

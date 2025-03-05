@@ -12,11 +12,15 @@ const MenuModal = ({visible,onPressHide}) => {
 
     const dispatch = useDispatch()
 
-    const handleNewGame = useCallback(() => {
-        dispatch(resetGame())
-        playSound('game_start')
-        onPressHide()
-    },[dispatch,onPressHide])
+    const handleNewGame = useCallback(async () => {
+        console.log('Playing sound...');
+        await playSound('game_start');
+        console.log('Sound finished, resetting game...');
+        dispatch(resetGame());
+        onPressHide();
+    }, [dispatch, onPressHide]);
+    
+    
 
     const haldelHome = useCallback(() => {
         goBack()
