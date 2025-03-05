@@ -21,7 +21,7 @@ export const gameSlice = createSlice({
             state.pileSelectionPlayer = action.payload.playerNo;
         },
         updatePlayerChance : (state,action) => {
-            state.currentPlayerChance = action.payload.chancePlayer
+            state.chancePlayer = action.payload.chancePlayer
             state.touchDiceBlock = false
             state.isDiceRolled = false
         },

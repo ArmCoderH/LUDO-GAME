@@ -88,8 +88,8 @@ const Pile = ({cell,pieceId,color,player,onPress}) => {
                     <Svg height="18" width="18">
                         <Circle
                         cx="9"
-                        cy="9"
-                        r="8"
+                        cy="3"
+                        r="7"
                         stroke="white"
                         strokeWidth="2"
                         strokeDasharray="4 4"

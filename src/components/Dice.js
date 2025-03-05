@@ -38,7 +38,8 @@ const Dice = React.memo(({ color, rotate, player, data }) => {
         setDiceRolling(false);
 
         const isAnyPieceAlive = data?.some(i => i.pos !== 0 && i.pos !== 5);
-        const isAnyPieceLocked = data?.some(i => i.pos === 0);
+        const isAnyPieceLocked = data.some(i => i.pos === 0); // will return true or false
+
 
         if (isAnyPieceAlive) {
             if (newDiceNo == 6) {
@@ -54,13 +55,18 @@ const Dice = React.memo(({ color, rotate, player, data }) => {
                 pile => pile.travelCount + newDiceNo <= 57 && pile.pos !== 0
             );
 
-            if (!canMove && (newDiceNo !== 6 || !isAnyPieceLocked)) {
+            if(
+                (!canMove && newDiceNo == 6 && !isAnyPieceLocked)||  
+                (!canMove && newDiceNo != 6 && isAnyPieceLocked)|| 
+                (!canMove && newDiceNo != 6 && !isAnyPieceLocked)  
+            ) {
                 let nextPlayer = player + 1;
                 if (nextPlayer > 4) nextPlayer = 1;
                 await delay();
                 dispatch(updatePlayerChance({ chancePlayer: nextPlayer }));
                 return;
             }
+            
 
             if (newDiceNo === 6) {
                 dispatch(enablePileSelection({ playerNo: player }));
