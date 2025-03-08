@@ -35,7 +35,7 @@ export const initialState = {
     diceNo : 1,
     isDiceRolled : false,
     pileSelectionPlayer : -1, //
-    callSelectionPlayer : -1, //
+    cellSelectionPlayer : -1, //
     touchDiceBlock : false,
     currentPositions : [],
     fireworks : false,

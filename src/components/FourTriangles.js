@@ -1,16 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Colors } from '../constants/Colors';
-import { deviceHeight, deviceWidth } from '../constants/Scaling';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFireWorks } from '../redux/reducers/gameSlectors';
-import { updateFireworks } from '../redux/reducers/gameSlice';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {memo, useCallback, useEffect, useMemo, useState} from 'react';
+import {Colors} from '../constants/Colors';
+import {deviceHeight, deviceWidth} from '../constants/Scaling';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectFireWorks} from '../redux/reducers/gameSlectors';
+import {updateFireworks} from '../redux/reducers/gameSlice';
 import Pile from './Pile';
 import Fireworks from '../assets/animation/firework.json';
 import LottieView from 'lottie-react-native';
-import Svg, { Polygon } from 'react-native-svg';
+import Svg, {Polygon} from 'react-native-svg';
 
-const FourTriangles = ({ player1, player2, player3, player4 }) => {
+const FourTriangles = ({player1, player2, player3, player4}) => {
   const size = 300;
   const isFirework = useSelector(selectFireWorks);
   const [blast, setBlast] = useState(false);
@@ -58,14 +58,14 @@ const FourTriangles = ({ player1, player2, player3, player4 }) => {
         translate: 'translateY',
       },
     ],
-    [player1, player2, player3, player4]
+    [player1, player2, player3, player4],
   );
 
   const renderPlayerPieces = useCallback(
     (data, index) => (
       <PlayerPieces
         key={index}
-        player={data.player.filter((item) => item.travelCount === 57)}
+        player={data.player.filter(item => item.travelCount === 57)}
         style={{
           top: data.top,
           bottom: data.bottom,
@@ -76,7 +76,7 @@ const FourTriangles = ({ player1, player2, player3, player4 }) => {
         translate={data.translate}
       />
     ),
-    []
+    [],
   );
 
   return (
@@ -93,10 +93,22 @@ const FourTriangles = ({ player1, player2, player3, player4 }) => {
       )}
 
       <Svg height={size} width={size - 5}>
-        <Polygon points={`0,0 ${size / 2},${size / 2} ${size},0`} fill={Colors.yellow} />
-        <Polygon points={`${size},0 ${size},${size} ${size / 2},${size / 2}`} fill={Colors.blue} />
-        <Polygon points={`0,${size} ${size / 2},${size / 2} ${size},${size}`} fill={Colors.red} />
-        <Polygon points={`0,0 ${size / 2},${size / 2} 0,${size}`} fill={Colors.green} />
+        <Polygon
+          points={`0,0 ${size / 2},${size / 2} ${size},0`}
+          fill={Colors.yellow}
+        />
+        <Polygon
+          points={`${size},0 ${size},${size} ${size / 2},${size / 2}`}
+          fill={Colors.blue}
+        />
+        <Polygon
+          points={`0,${size} ${size / 2},${size / 2} ${size},${size}`}
+          fill={Colors.red}
+        />
+        <Polygon
+          points={`0,0 ${size / 2},${size / 2} 0,${size}`}
+          fill={Colors.green}
+        />
       </Svg>
 
       {playersData.map(renderPlayerPieces)}
@@ -104,7 +116,7 @@ const FourTriangles = ({ player1, player2, player3, player4 }) => {
   );
 };
 
-const PlayerPieces = React.memo(({ player, style, pieceColor, translate }) => {
+const PlayerPieces = React.memo(({player, style, pieceColor, translate}) => {
   return (
     <View style={[styles.container, style]}>
       {player.map((piece, index) => (
@@ -115,10 +127,15 @@ const PlayerPieces = React.memo(({ player, style, pieceColor, translate }) => {
             zIndex: 99,
             position: 'absolute',
             bottom: 0,
-            transform: [{ scale: 0.5 }, { [translate]: 14 * index }],
-          }}
-        >
-          <Pile cell={true} player={player} onPress={() => {}} pieceId={piece.id} color={pieceColor} />
+            transform: [{scale: 0.5}, {[translate]: 14 * index}],
+          }}>
+          <Pile
+            cell={true}
+            player={player}
+            onPress={() => {}}
+            pieceId={piece.id}
+            color={pieceColor}
+          />
         </View>
       ))}
     </View>

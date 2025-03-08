@@ -14,4 +14,4 @@ export const selectPocketPileSelection = state => state.game.pileSelectionPlayer
 export const selectCellSelection = state => state.game.cellSelectionPlayer;
 export const selectDIceTouch = state => state.game.touchDiceBlock;
 export const selectFireWorks = state => state.game.fireworks;
-
+export const selectWinner = state => state.game.winner;

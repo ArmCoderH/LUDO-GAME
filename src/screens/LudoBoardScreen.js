@@ -27,7 +27,7 @@ import {Colors} from '../constants/Colors';
 import Dice from '../components/Dice';
 import Pocket from '../components/Pocket';
 import VerticalPath from '../components/path/VerticalPath';
-import { Plot1Data, Plot2Data, Plot3Data, Plot4Data } from '../helpers/PlotData';
+import {Plot1Data, Plot2Data, Plot3Data, Plot4Data} from '../helpers/PlotData';
 import HorizontalPath from '../components/path/HorizontalPath';
 import FourTriangles from '../components/FourTriangles';
 
@@ -94,30 +94,27 @@ const LudoBoardScreen = () => {
 
         <View style={styles.ludoBoard}>
           <View style={styles.plotContainer}>
-            <Pocket color={Colors.green} player={2} data={player2}/>
-            <VerticalPath cells={Plot2Data} color={Colors.yellow}/>
-            <Pocket color={Colors.yellow} player={3} data={player3}/>
+            <Pocket color={Colors.green} player={2} data={player2} />
+            <VerticalPath cells={Plot2Data} color={Colors.yellow} />
+            <Pocket color={Colors.yellow} player={3} data={player3} />
           </View>
 
           <View style={styles.pathContainer}>
-            <HorizontalPath cells={Plot1Data} color={Colors.green}/>
+            <HorizontalPath cells={Plot1Data} color={Colors.green} />
             <FourTriangles
-            player1={player1}
-            player2={player2}
-            player3={player3}
-            player4={player4}
+              player1={player1}
+              player2={player2}
+              player3={player3}
+              player4={player4}
             />
-            <HorizontalPath cells={Plot3Data} color={Colors.blue}/>
+            <HorizontalPath cells={Plot3Data} color={Colors.blue} />
           </View>
 
           <View style={styles.plotContainer}>
-          <Pocket color={Colors.red} player={1} data={player1}/>
-          <VerticalPath cells={Plot4Data} color={Colors.red}/>
-          <Pocket color={Colors.blue} player={4} data={player4}/>
-
+            <Pocket color={Colors.red} player={1} data={player1} />
+            <VerticalPath cells={Plot4Data} color={Colors.red} />
+            <Pocket color={Colors.blue} player={4} data={player4} />
           </View>
-
-
         </View>
 
         <View
@@ -132,10 +129,15 @@ const LudoBoardScreen = () => {
         <Animated.Image
           source={StartGame}
           style={{
-            width: deviceWidth * 0.5,
-            height: deviceHeight * 0.2,
+            width: deviceWidth * 0.6,
+            height: deviceHeight * 0.3,
             position: 'absolute',
+            top: deviceHeight * 0.35,
+            left: deviceWidth * 0.2,
             opacity,
+            resizeMode: 'contain',
+            zIndex: 9999, // 👈 Brings to the front
+            elevation: 10, // 👈 Works on Android
           }}
         />
       )}
@@ -147,7 +149,7 @@ const LudoBoardScreen = () => {
         />
       )}
 
-      {winner !== null && <WinModal winner={1} />}
+      {winner !== null && <WinModal winner={winner} />}
     </Wrapper>
   );
 };
@@ -182,18 +184,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 30,
   },
-  plotContainer : {
-    flexDirection  :"row",
-    width : '100%',
-    height : '40%',
-    justifyContent : 'space-between',
-    backgroundColor : '#ccc'
+  plotContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    height: '40%',
+    justifyContent: 'space-between',
+    backgroundColor: '#ccc',
   },
-  pathContainer : {
-    flexDirection  :"row",
-    width : '100%',
-    height : '20%',
-    justifyContent : 'space-between',
-    backgroundColor : '#1E5162'
-  }
+  pathContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    height: '20%',
+    justifyContent: 'space-between',
+    backgroundColor: '#1E5162',
+  },
 });

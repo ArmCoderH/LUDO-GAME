@@ -3,17 +3,19 @@ import React, { memo } from 'react';
 import { Colors } from '../constants/Colors';
 import { useDispatch } from 'react-redux';
 import Pile from './Pile';
+import { startingPoints } from '../helpers/PlotData';
+import { unfreezeDice, updatePlayerPieceValues } from '../redux/reducers/gameSlice';
 
 // Move Plot Component Above Pocket
 const Plot = ({ pieceNo, player, color, data, handlePress }) => {
   return (
     <View style={[styles.plot, { backgroundColor: color }]}>
-      {data && data[pieceNo] && data[pieceNo].pos === 0 && (
+      {data && data[pieceNo] ?.pos === 0 && (
         <Pile
           player={player}
           color={color}
           onPress={() => handlePress(data[pieceNo])}
-          style={styles.Pile}
+          style={styles.pile}
         />
       )}
     </View>
@@ -23,9 +25,34 @@ const Plot = ({ pieceNo, player, color, data, handlePress }) => {
 const Pocket = ({ color, player, data }) => {
   const dispatch = useDispatch();
 
-  const handlePress = async value => {
-    console.log('Pressed:', value);
-    // Dispatch or handle logic here
+  const handlePress = async (value) => {
+    let playerNo = value?.id[0];
+    switch (playerNo) {
+      case 'A':
+        playerNo = 'player1';
+        break;
+      case 'B':
+        playerNo = 'player2';
+        break;
+      case 'C':
+        playerNo = 'player3';
+        break;
+      case 'D':
+        playerNo = 'player4';
+        break;
+      default:
+        break;
+    }
+
+    dispatch(
+      updatePlayerPieceValues({
+        playerNo : playerNo,
+        pieceId: value.id,
+        pos: startingPoints[parseInt(playerNo.match(/\d+/)[0], 10) - 1],
+        travelCount: 1,
+      }),
+    );
+    dispatch(unfreezeDice());
   };
 
   return (
